@@ -1,0 +1,12 @@
+h4 {
+  display: block;
+  font-size: 1.25 em;
+  font-weight: 400;
+  text-align: center;
+}
+.dis {
+  font-size: large;
+}
+.loading {
+  margin: 6em;
+}
