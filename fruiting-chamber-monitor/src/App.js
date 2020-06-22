@@ -4,6 +4,7 @@ import Chart from "./Components/Chart";
 import Times from "./Components/Times";
 import Modal from "./Components/Modal";
 import Navbar from "./Components/Navbar";
+import Fan from "./Components/Fan";
 import "./App.css";
 //rtsp://MushCam:Jlewis13@192.168.1.78/live
 
@@ -86,6 +87,14 @@ class App extends React.Component {
                 title="Humidity"
                 kind="h"
               />
+            </div>
+          </div>
+          <div className="row">
+            <div class="col-lg-6 col-12 border">
+              <Fan fanState={this.state.vitals[2]} title="Fan 1 State" />
+            </div>
+            <div class="col-lg-6 col-12 border">
+              <Fan fanState={this.state.vitals[3]} title="Fan 2 State" />
             </div>
           </div>
           <div className="row">
