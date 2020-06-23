@@ -16,7 +16,7 @@ const Times = (props) => {
       <div>
         <h5>Times Fan Will Run:</h5>
         {props.times.map((time, index) => (
-          <span>{timeFormat(time)} </span>
+          <span key={index}>{timeFormat(time)} </span>
         ))}
       </div>
     );

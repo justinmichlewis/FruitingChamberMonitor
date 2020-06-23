@@ -16,7 +16,7 @@ export default class Modal extends React.Component {
       "http://192.168.1.96:3000/schedule",
       this.state
     );
-    console.log(response);
+
     //Call back function for parent GET updated schedule from server and save to state
     this.props.fetch();
   };
