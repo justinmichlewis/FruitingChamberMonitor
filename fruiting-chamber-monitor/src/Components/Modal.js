@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Modal.css";
 
 export default class Modal extends React.Component {
-  state = { duration: 2, times: 2 };
+  state = { duration: 0, times: 0 };
 
   handleUserInput = (e) => {
     const name = e.target.name;
@@ -12,13 +12,18 @@ export default class Modal extends React.Component {
   };
 
   saveSettings = async () => {
-    const response = await axios.post(
-      "http://192.168.1.96:3000/schedule",
-      this.state
-    );
+    console.log(this.state.duration);
+    if (this.state.duration === 0 || this.state.times === 0) {
+      alert("Values Cannot Be Blank");
+    } else {
+      const response = await axios.post(
+        "http://192.168.1.96:3000/schedule",
+        this.state
+      );
 
-    //Call back function for parent GET updated schedule from server and save to state
-    this.props.fetch();
+      //Call back function for parent GET updated schedule from server and save to state
+      this.props.fetch();
+    }
   };
   render() {
     if (!this.props.show) {
