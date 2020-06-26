@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios";
-import Chart from "./Chart";
-import Times from "./Times";
-import Modal from "./Modal";
-import Fan from "./Fan";
-
+import Chart from "../Chart/Chart";
+import Times from "../Times/Times";
+import Modal from "../Modal/Modal";
+import Fan from "../Fan/Fan";
 import "./MainPage.css";
 
 class MainPage extends React.Component {

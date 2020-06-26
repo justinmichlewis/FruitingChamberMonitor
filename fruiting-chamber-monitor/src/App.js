@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "./Components/Navbar";
-import MainPage from "./Components/MainPage";
-import Log from "./Components/Log";
-import VideoStream from "./Components/VideoStream";
+import Navbar from "./Components/Navbar/Navbar";
+import MainPage from "./Components/MainPage/MainPage";
+import Log from "./Components/Log/Log";
+import VideoStream from "./Components/VideoStream/VideoStream";
 import "./App.css";
 
 class App extends React.Component {
