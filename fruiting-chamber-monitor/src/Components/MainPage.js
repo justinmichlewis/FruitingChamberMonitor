@@ -115,17 +115,7 @@ class MainPage extends React.Component {
           >
             {this.state.btnText}
           </button>
-          <div className="web-cam">
-            <h5>Chamber Monitor</h5>
-            <iframe
-              src="http://192.168.1.96:8000/index.html"
-              height="500"
-              width="675"
-            ></iframe>
-          </div>
         </div>
-        <div className="bottomMarg"></div>
-        <footer className="footer">Justin Lewis | 2 0 2 0</footer>
       </div>
     );
   }

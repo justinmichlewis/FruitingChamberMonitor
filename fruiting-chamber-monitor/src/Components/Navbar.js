@@ -5,15 +5,19 @@ class Navbar extends React.Component {
     super(props);
     this.loadLog = this.loadLog.bind(this);
     this.loadHome = this.loadHome.bind(this);
-    this.state = { homeCurrent: true };
+    this.state = { currentPage: "Home" };
   }
   loadLog = (e) => {
-    this.setState({ homeCurrent: false });
+    this.setState({ currentPage: "Log" });
     this.props.loadLog();
   };
   loadHome = (e) => {
-    this.setState({ homeCurrent: true });
+    this.setState({ currentPage: "Home" });
     this.props.loadHome();
+  };
+  loadVideo = (e) => {
+    this.setState({ currentPage: "Video" });
+    this.props.loadVideo();
   };
   render() {
     return (
@@ -42,16 +46,15 @@ class Navbar extends React.Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <li className={this.state.curretn ? "nav-item active" : "nav-item"}>
+            <li className="nav-item active">
               <a className="nav-link" href="#" onClick={this.loadHome}>
-                Home <span className="sr-only">(current)</span>
+                Home
               </a>
             </li>
-            <li
-              className={
-                !this.state.homeCurrent ? "nav-item active" : "nav-item"
-              }
-            >
+            <li className="nav-item active">
+              <a className="nav-link" href="#" onClick={this.loadVideo}>
+                Video Stream
+              </a>
               <a className="nav-link" href="#" onClick={this.loadLog}>
                 Log
               </a>

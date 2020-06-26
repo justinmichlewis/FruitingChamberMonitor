@@ -2,9 +2,8 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import MainPage from "./Components/MainPage";
 import Log from "./Components/Log";
-//import Log from "./Components/Log";
+import VideoStream from "./Components/VideoStream";
 import "./App.css";
-//rtsp://MushCam:Jlewis13@192.168.1.78/live
 
 class App extends React.Component {
   constructor(props) {
@@ -22,11 +21,19 @@ class App extends React.Component {
     this.setState({ screen: "Home" });
   };
 
+  loadVideo = () => {
+    this.setState({ screen: "Video" });
+  };
+
   render() {
     if (this.state.screen === "Home") {
       return (
         <div>
-          <Navbar loadLog={this.loadLog} loadHome={this.loadHome} />
+          <Navbar
+            loadLog={this.loadLog}
+            loadHome={this.loadHome}
+            loadVideo={this.loadVideo}
+          />
           <MainPage />
           <footer className="footer">Justin Lewis | 2 0 2 0</footer>
         </div>
@@ -34,8 +41,24 @@ class App extends React.Component {
     } else if (this.state.screen === "Log") {
       return (
         <div>
-          <Navbar loadLog={this.loadLog} loadHome={this.loadHome} />
+          <Navbar
+            loadLog={this.loadLog}
+            loadHome={this.loadHome}
+            loadVideo={this.loadVideo}
+          />
           <Log />
+          <footer className="footer">Justin Lewis | 2 0 2 0</footer>
+        </div>
+      );
+    } else if (this.state.screen === "Video") {
+      return (
+        <div>
+          <Navbar
+            loadLog={this.loadLog}
+            loadHome={this.loadHome}
+            loadVideo={this.loadVideo}
+          />
+          <VideoStream />
           <footer className="footer">Justin Lewis | 2 0 2 0</footer>
         </div>
       );
