@@ -46,15 +46,33 @@ class Navbar extends React.Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <li className="nav-item active">
+            <li
+              className={
+                this.state.currentPage === "Home"
+                  ? "nav-item active"
+                  : "nav-item"
+              }
+            >
               <a className="nav-link" href="#" onClick={this.loadHome}>
                 Home
               </a>
             </li>
-            <li className="nav-item active">
+            <li
+              className={
+                this.state.navVideo === "Video" ? "nav-item active" : "nav-item"
+              }
+            >
               <a className="nav-link" href="#" onClick={this.loadVideo}>
                 Video Stream
               </a>
+            </li>
+            <li
+              className={
+                this.state.currentPage === "Log"
+                  ? "nav-item active"
+                  : "nav-item"
+              }
+            >
               <a className="nav-link" href="#" onClick={this.loadLog}>
                 Log
               </a>
