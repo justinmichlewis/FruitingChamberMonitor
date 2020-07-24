@@ -44,7 +44,7 @@ class MainPage extends React.Component {
     try {
       setInterval(async () => {
         const response = await axios.get("http://192.168.1.96:3000/vitals");
-
+        //console.log(response.data);
         this.setState({ vitals: response.data });
       }, 3000);
     } catch (e) {
@@ -85,6 +85,16 @@ class MainPage extends React.Component {
                 value={this.state.vitals[1]}
                 title="Humidity"
                 kind="h"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-12 border">
+              <Chart
+                chartID="gauge-chart3"
+                value={this.state.vitals[4]}
+                title="CO2"
+                kind="c"
               />
             </div>
           </div>

@@ -18,12 +18,17 @@ var bodyParser = require("body-parser");
 var app = express();
 
 //Define pins where the fans are connected
-var FAN1_PIN = 3;
+var FAN1_PIN = 17;
 var FAN2_PIN = 21;
+
+//Sensor Fans
+var TEMP_PIN = 4;
 
 var fan1 = new Gpio(FAN1_PIN, "out");
 var fan2 = new Gpio(FAN2_PIN, "out");
 
+//Hard code threshold for now, TODO read from file
+var threshold = 410; 
 //Create fstream object from the JSON file in the home directory
 const fs = require("fs");
 
@@ -49,8 +54,8 @@ function scheduleTimes(times) {
 }
 
 //format to JSON and Save
-function formatSaveSettings(dur, times) {
-  var settingsJSON = { duration: dur, times: times };
+function formatSaveSettings(dur, times, threshold) {
+  var settingsJSON = { duration: dur, times: times, threshold: threshold };
   fs.writeFile("settings.json", JSON.stringify(settingsJSON), function (err) {
     if (err) throw err;
   });
@@ -58,11 +63,24 @@ function formatSaveSettings(dur, times) {
 
 //get vitals all
 app.get("/vitals", function (req, res) {
-  sensor.read(22, 2, function (err, temperature, humidity) {
+	//console.log("Getting Vitals on pin", TEMP_PIN);
+	let co2 = fs.readFileSync("CO2.txt",{encoding:"utf8",flag:"r"} );
+	/*fs.readFile("CO2.txt",'utf8',function(err,data){
+		if(err){
+			return console.log(err);
+		}
+		});*/
+
+	sensor.read(22, TEMP_PIN, function (err, temperature, humidity) {
     if (!err) {
-      var vitals = [temperature, humidity, fan1.readSync(), fan2.readSync()];
+	  var co2Alert = Number(co2) > threshold ? 1 : 0;
+      var vitals = [temperature, humidity, fan1.readSync(), fan2.readSync(), Number(co2),co2Alert];
       res.status(200).send(vitals);
-    }
+      console.log(vitals);
+    }else{
+	 
+	console.log("ERROR");
+	}
   });
 });
 
@@ -93,13 +111,15 @@ app.post("/schedule/", function (req, res) {
   const schedule = req.body;
   res.status(200).send(schedule);
 
-  formatSaveSettings(schedule.duration, scheduleTimes(schedule.times));
+  formatSaveSettings(schedule.duration, scheduleTimes(schedule.times), schedule.threshold);
   console.log("Writting Schedule", req.body);
 });
 
+/*
 app.get("*", function (req, res) {
   res.status(200).send(inputs[req / params.id]);
 });
+* */
 
 app.use(function (err, req, res, next) {
   if (req.xhr) {

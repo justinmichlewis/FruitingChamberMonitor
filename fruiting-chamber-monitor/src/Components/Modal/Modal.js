@@ -3,16 +3,17 @@ import axios from "axios";
 import "./Modal.css";
 
 export default class Modal extends React.Component {
-  state = { duration: 0, times: 0 };
+  state = { duration: 0, times: 0, threshold: 0 };
 
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: parseInt(value) });
+    //console.log(this.state);
   };
 
   saveSettings = async () => {
-    console.log(this.state.duration);
+    console.log(this.state);
     if (this.state.duration === 0 || this.state.times === 0) {
       alert("Values Cannot Be Blank");
     } else {
@@ -44,6 +45,13 @@ export default class Modal extends React.Component {
           type="text"
           id="lname"
           name="times"
+          onChange={this.handleUserInput}
+        />
+        <label>CO2 Threshold:</label>
+        <input
+          type="text"
+          id="lname"
+          name="threshold"
           onChange={this.handleUserInput}
         />
         <button className="btn btn-success" onClick={this.saveSettings}>

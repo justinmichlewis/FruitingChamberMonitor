@@ -59,6 +59,29 @@ const Chart = (props) => {
         />
       </div>
     );
+  } else if (props.kind === "c") {
+    // console.log("1000 ", props.value / 1000, "100", props.value / 100);
+    return (
+      <div>
+        <h6 className="dis">{props.title}</h6>
+        <GaugeChart
+          id={props.chartID}
+          nrOfLevels={3}
+          needleColor="#000000"
+          textColor={
+            (props.value / 1000).toFixed(2) > 0.6 &&
+            (props.value / 1000).toFixed(2) < 0.8
+              ? "#00FF00"
+              : "#FFCC00"
+          }
+          colors={["#FF0000", "#FFFF00", "#00FF00"]}
+          animate={false}
+          percent={(props.value / 1000).toFixed(2)}
+          style={chartStyle}
+          formatTextValue={(value) => value * 10}
+        />
+      </div>
+    );
   } else {
     return <h1>Shits fucked up</h1>;
   }

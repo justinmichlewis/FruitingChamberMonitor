@@ -17,7 +17,7 @@ import json
 
 # GPIO SETTINGS
 gpio.setmode(gpio.BCM)
-FAN1_PIN = 3
+FAN1_PIN = 17
 FAN2_PIN = 21
 gpio.setup(FAN1_PIN, gpio.OUT)
 gpio.setup(FAN2_PIN, gpio.OUT)

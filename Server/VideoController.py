@@ -9,11 +9,7 @@ import socketserver
 from threading import Condition
 from http import server
 
-<<<<<<< HEAD
 PAGE = """
-=======
-PAGE = """\
->>>>>>> 42701107e63abbf4b5b93ee82a6adf79eb9d4384
 <html>
 <head>
 </head>
