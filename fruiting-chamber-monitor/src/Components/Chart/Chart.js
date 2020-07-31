@@ -4,7 +4,7 @@ import "./Chart.css";
 
 const Chart = (props) => {
   const chartStyle = {
-    width: 500,
+    width: 350,
   };
   if (props.value === undefined || props.value === "NaN") {
     return (
@@ -60,7 +60,7 @@ const Chart = (props) => {
       </div>
     );
   } else if (props.kind === "c") {
-    // console.log("1000 ", props.value / 1000, "100", props.value / 100);
+    console.log("1000 ", props.value / 1000, "100", props.value / 100);
     return (
       <div>
         <h6 className="dis">{props.title}</h6>
@@ -70,11 +70,11 @@ const Chart = (props) => {
           needleColor="#000000"
           textColor={
             (props.value / 1000).toFixed(2) > 0.6 &&
-            (props.value / 1000).toFixed(2) < 0.8
+            (props.value / 1000).toFixed(2) < props.threshold
               ? "#00FF00"
               : "#FFCC00"
           }
-          colors={["#FF0000", "#FFFF00", "#00FF00"]}
+          colors={["#00FF00", "#FFFF00", "#FF0000"]}
           animate={false}
           percent={(props.value / 1000).toFixed(2)}
           style={chartStyle}

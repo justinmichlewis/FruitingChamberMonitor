@@ -10,7 +10,7 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vitals: [{ temp: 0, humid: 0 }],
+      vitals: [],
       schedule: [],
       scheudleUpdate: [],
       show: false,
@@ -53,7 +53,7 @@ class MainPage extends React.Component {
   };
 
   render() {
-    //console.log(this.state.vitals);
+    console.log(this.state.vitals);
     const renderModal = () => {
       return (
         <Modal
@@ -71,7 +71,7 @@ class MainPage extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            <div className="col-lg-6 col-12 border">
+            <div className="col-sm border">
               <Chart
                 chartID="gauge-chart1"
                 value={((this.state.vitals[0] * 9) / 5 + 32).toFixed(2)}
@@ -79,7 +79,7 @@ class MainPage extends React.Component {
                 kind="t"
               />
             </div>
-            <div className="col-lg-6 col-12 border">
+            <div className="col-sm border">
               <Chart
                 chartID="gauge-chart2"
                 value={this.state.vitals[1]}
@@ -87,9 +87,7 @@ class MainPage extends React.Component {
                 kind="h"
               />
             </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-6 col-12 border">
+            <div className="col-sm border">
               <Chart
                 chartID="gauge-chart3"
                 value={this.state.vitals[4]}
@@ -107,13 +105,17 @@ class MainPage extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-12 border">
+            <div className="col-sm border">
               <h5>Fan Duration:</h5> {this.state.schedule.duration} Minutes
             </div>
-            <div className="col-lg-6 col-12 border">
+            <div className="col-sm border">
               <Times times={this.state.schedule.times} />
             </div>
+            <div className="col-sm border">
+              <h5>CO2 Threshold:</h5> {this.state.schedule.threshold} PPM
+            </div>
           </div>
+
           {renderModal()}
           <button
             type="button"

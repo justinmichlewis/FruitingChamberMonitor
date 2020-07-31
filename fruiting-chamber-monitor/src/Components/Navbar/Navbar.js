@@ -22,7 +22,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav className="navbar  navbar-dark bg-primary">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#" onClick={this.loadHome}>
           <img
             src={process.env.PUBLIC_URL + "/viburnum-fruit.png"}
             width="30"
