@@ -27,8 +27,7 @@ var TEMP_PIN = 4;
 var fan1 = new Gpio(FAN1_PIN, "out");
 var fan2 = new Gpio(FAN2_PIN, "out");
 
-//Hard code threshold for now, TODO read from file
-var threshold = 410; 
+
 //Create fstream object from the JSON file in the home directory
 const fs = require("fs");
 
@@ -73,8 +72,8 @@ app.get("/vitals", function (req, res) {
 
 	sensor.read(22, TEMP_PIN, function (err, temperature, humidity) {
     if (!err) {
-	  var co2Alert = Number(co2) > threshold ? 1 : 0;
-      var vitals = [temperature, humidity, fan1.readSync(), fan2.readSync(), Number(co2),co2Alert];
+      //var co2Alert = Number(co2) > threshold ? 1 : 0;
+      var vitals = [temperature, humidity, fan1.readSync(), fan2.readSync(), Number(co2)];
       res.status(200).send(vitals);
       console.log(vitals);
     }else{
