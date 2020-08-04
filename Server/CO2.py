@@ -1,5 +1,10 @@
-#this example reads and prints CO2 equiv. measurement, TVOC measurement, and temp every 2 seconds
-
+###################################################################
+# CO2 Controller runs every 3 seconds to check if the CO2 in      #
+# the chamber is > than the threshold value that is read from the #
+# settings.json file and updated by the user via the react app	  #
+#																  #
+# Aug 3, 2020													  #
+###################################################################
 from time import sleep
 from Adafruit_CCS811 import Adafruit_CCS811
 import RPi.GPIO as gpio
@@ -38,11 +43,8 @@ while 1:
 		print(data["threshold"])
 		print (datetime.today(),"\n-------------\nCO2: ", ccs.geteCO2(), "ppm\nTVOC: ", ccs.getTVOC(),"\n")
 		if not ccs.readData():
-			print("FIRST IF")
-			if ccs.geteCO2() > errorValueLower and ccs.geteCO2() < errorValueUpper:		
-				print("SECOND IF")				
+			if ccs.geteCO2() > errorValueLower and ccs.geteCO2() < errorValueUpper:					
 				if  ccs.geteCO2() > data["threshold"]:
-					print("THIRD IF")
 					print("ALERT! CO2 level is ",ccs.geteCO2(), " threshold is ",threshold)
 					print("Starting fan to exhaust CO2 at ", datetime.today())
 					while ccs.geteCO2() > data["threshold"]:

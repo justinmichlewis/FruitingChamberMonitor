@@ -93,6 +93,7 @@ class MainPage extends React.Component {
                 value={this.state.vitals[4]}
                 title="CO2"
                 kind="c"
+                threshold={this.state.schedule.threshold}
               />
             </div>
           </div>

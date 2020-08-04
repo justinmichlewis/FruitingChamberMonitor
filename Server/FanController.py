@@ -76,22 +76,3 @@ while 1:
     time.sleep(hour - durationSec)
 
 
-################################################
-# BELOW THIS IS ANTIQUATED CODE SAVE IF NEEDED #
-################################################
-    # logLine = {
-    #	"start": startTime.strftime("%m/%d/%Y %H:%M:%S"),
-    #	"end": datetime.now().strftime("%m/%d/%Y  %H:%M:%S"),
-    #	"actualDurr": str(timeDiff)[0:7],
-    #	"scheduledDurr": str(data['duration']),
-    #	"runTimes": str(data['times'])
-    # }
-    # print(json.dumps(logLine))
-    # logFile.write(json.dumps(logLine))
-
-    # print(writeLog)
-    # if writeLog:
-    #	sleepDur =  str(datetime.now() - sleepTime) + "\n"
-    #	output = logLine + ' | '+ sleepDur + ';'
-    #	logFile.write(output)
-    #	print("Log W to File")

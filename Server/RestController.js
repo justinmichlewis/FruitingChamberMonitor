@@ -1,12 +1,14 @@
 /************************************************************
- * restcontorller is a RESTfull API that reads GPIO input   *
+ * RestContorller is a RESTfull API that reads GPIO input   *
  * from the RSP 3 as well as receives requests to update    *
- * schedule. The client web app makes post and get requests *
- * to read the vitals (temp/humidity), fan state(on/off)	*
- * read and write schedule (times to run/duration),			*
- * read and write log file of when the fans ran.			*
- * 															*
- * June 30, 2020											*
+ * schedule + CO2 threshold. 				    *
+ * 							    *
+ * The client web app makes post and get requests           *
+ * to read the vitals (temp/humidity/CO2), fan state(on/off)*
+ * read and write schedule (times to run/duration/CO2),	    *
+ * read and write log file of when the fans ran.	    *
+ * 							    *
+ * Aug 3, 2020					    	    *
  ***********************************************************/
 
 var http = require("http");
@@ -64,11 +66,6 @@ function formatSaveSettings(dur, times, threshold) {
 app.get("/vitals", function (req, res) {
 	//console.log("Getting Vitals on pin", TEMP_PIN);
 	let co2 = fs.readFileSync("CO2.txt",{encoding:"utf8",flag:"r"} );
-	/*fs.readFile("CO2.txt",'utf8',function(err,data){
-		if(err){
-			return console.log(err);
-		}
-		});*/
 
 	sensor.read(22, TEMP_PIN, function (err, temperature, humidity) {
     if (!err) {

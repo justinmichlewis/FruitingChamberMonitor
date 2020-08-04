@@ -66,15 +66,14 @@ const Chart = (props) => {
         <h6 className="dis">{props.title}</h6>
         <GaugeChart
           id={props.chartID}
-          nrOfLevels={3}
+          nrOfLevels={2}
           needleColor="#000000"
           textColor={
-            (props.value / 1000).toFixed(2) > 0.6 &&
-            (props.value / 1000).toFixed(2) < props.threshold
-              ? "#00FF00"
-              : "#FFCC00"
+            (props.value / 1000).toFixed(2) > props.threshold
+              ? "#FFFF00"
+              : "#00FF00"
           }
-          colors={["#00FF00", "#FFFF00", "#FF0000"]}
+          colors={["#00FF00", "#FFFF00"]}
           animate={false}
           percent={(props.value / 1000).toFixed(2)}
           style={chartStyle}
