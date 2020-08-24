@@ -148,40 +148,51 @@ export default class Log extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <h5>Log Data</h5>
-        <button
-          type="button"
-          id="sort"
-          className="btn btn-primary"
-          onClick={this.sortClick}
-        >
-          {this.state.sortButton}
-        </button>
-        <button
-          type="button"
-          id="err"
-          className={this.state.errButton}
-          onClick={this.errClick}
-        >
-          Toggle Errors
-        </button>
-        <table id="logs">
-          <tbody>
-            <tr>
-              <th key="1">Start Time</th>
-              <th key="2">End Time</th>
-              <th key="3">Act Durr</th>
-              <th key="4">Sched Durr</th>
-              <th key="4">Run Times</th>
-              <th key="5">Durr Error</th>
-              <th key="6">Run Time Error</th>
-            </tr>
-            {this.renderTableData()}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (this.state.tableData === undefined) {
+      return (
+        <div>
+          <div>
+            <h5>loading log data...</h5>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h5>Log Data</h5>
+
+          <button
+            type="button"
+            id="sort"
+            className="btn btn-primary"
+            onClick={this.sortClick}
+          >
+            {this.state.sortButton}
+          </button>
+          <button
+            type="button"
+            id="err"
+            className={this.state.errButton}
+            onClick={this.errClick}
+          >
+            Toggle Errors
+          </button>
+          <table id="logs">
+            <tbody>
+              <tr>
+                <th key="1">Start Time</th>
+                <th key="2">End Time</th>
+                <th key="3">Act Durr</th>
+                <th key="4">Sched Durr</th>
+                <th key="4">Run Times</th>
+                <th key="5">Durr Error</th>
+                <th key="6">Run Time Error</th>
+              </tr>
+              {this.renderTableData()}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }
